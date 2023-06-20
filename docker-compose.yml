@@ -1,0 +1,97 @@
+version: '3.8'
+services:
+  uvgram:
+    container_name: "uvgram"
+    image: adrianc68/uvgram:latest
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - .env:/app/.env
+      - ./prod/node/resources:/app/resources
+    networks:
+      prod_network:
+        aliases:
+          - node_prod_host
+    depends_on:
+      db:
+        condition: service_started
+      redis:
+        condition: service_started
+      mailhog:
+        condition: service_started
+      ftpserver:
+        condition: service_started
+  db:
+    build:
+      context: ./prod
+      dockerfile: "./dkfs/DockerfileDB"
+    restart: always
+    container_name: "uvgram_db"
+    image: postgres
+    environment:
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=soydesarrollador
+      - POSTGRES_DB=uvgram_db
+    volumes:
+      - ./prod/database/data:/var/lib/postgresql/data
+      - ./prod/database/dump/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    networks:
+      prod_network:
+        aliases:
+          - db_prod_host
+  redis:
+    build:
+      context: ./prod
+      dockerfile: "./dkfs/DockerfileRES"
+    image: redis:latest
+    container_name: "uvgram_redis"
+    restart: always
+    command: redis-server --requirepass development
+    volumes:
+      - ./prod/authentication/data/redis-data:/var/lib/redis
+      - ./prod/authentication/data/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    networks:
+      prod_network:
+        aliases:
+          - redis_prod_host
+  mailhog:
+    build:
+      context: ./prod
+      dockerfile: "./dkfs/DockerfileMAH"
+    container_name: "uvgram_mailhog"
+    image: mailhog:latest
+    restart: always
+    ports:
+      - 8025:8025
+    networks:
+      prod_network:
+        aliases:
+          - mail_prod_host
+  ftpserver:
+    build:
+      context: ./prod
+      dockerfile: "./dkfs/DockerfileFTP"
+    container_name: "uvgram_ftp"
+    restart: always
+    image: fclairamb/ftpserver
+    volumes:
+      - ./prod/storage/files:/tmp
+      - ./prod/storage/conf:/app
+    networks:
+      prod_network:
+        aliases:
+          - ftp_prod_host
+volumes:
+  prod: {}
+networks:
+  prod_network:
+    name: prod_net
+    driver: bridge
+    ipam:
+      driver: default

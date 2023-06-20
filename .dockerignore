@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log
+db_creation
+postman
+test
+services
+README.md
+messages.log
+services.tar
+.git
+.gitignore
+/prod/database/data
+/prod/authentication/data
+/prod/storage/files
+/testing/database/data
+/testing/authentication/data
+/testing/storage/files

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width" name="viewport" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Abril+Fatface"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Merriweather"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Bitter"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Permanent+Marker"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Cabin"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Oxygen"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Oswald"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Playfair+Display"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      .row,
+      .row-content {
+        position: relative;
+      }
+
+      .row-1 .row-content,
+      .row-2 .row-content,
+      .row-3 .row-content,
+      .row-4 .row-content,
+      .row-5 .row-content {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        color: #000;
+      }
+
+      .row-1,
+      .row-1 .row-content,
+      .row-2,
+      .row-3,
+      .row-4,
+      .row-5,
+      .row-5 .row-content,
+      .row-6,
+      .row-6 .row-content {
+        background-repeat: no-repeat;
+      }
+
+      .row-3 .col-1 .block-2,
+      .row-5 .col-1 .block-1,
+      .row-5 .col-1 .block-3 {
+        direction: ltr;
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: 120%;
+      }
+
+      body {
+        background-color: #fff;
+        color: #000;
+        font-family: Poppins, Arial, Helvetica, sans-serif;
+      }
+
+      a {
+        color: #1a30eb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body,
+      h1,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      .row-content {
+        max-width: 680px;
+        margin: 0 auto;
+        display: flex;
+      }
+
+      .row-content .col-w12 {
+        flex-basis: 100%;
+      }
+
+      .icon .icon-label-right a {
+        text-decoration: none;
+      }
+
+      .image {
+        overflow: auto;
+      }
+
+      .image .center {
+        margin: 0 auto;
+      }
+
+      .row-2 .col-1 .block-1 {
+        width: 100%;
+      }
+
+      .icon {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .icon .content {
+        display: flex;
+        align-items: center;
+      }
+
+      .image img {
+        display: block;
+        width: 25%;
+      }
+
+      .paragraph {
+        overflow-wrap: anywhere;
+      }
+
+      .row-1 {
+        background-size: auto;
+      }
+
+      .row-1 .row-content {
+        background-size: auto;
+        border-bottom: 0 solid #fff;
+        border-left: 0 solid #fff;
+        border-radius: 30px 30px 0 0;
+        border-right: 0px solid #fff;
+        border-top: 0 solid #fff;
+      }
+
+      .row-1 .col-1 .block-2 {
+        padding: 30px 60px;
+        text-align: center;
+        width: 100%;
+      }
+
+      .row-3 .col-1 {
+        padding-bottom: 30px;
+      }
+
+      .row-3 .col-1 .block-1,
+      .row-3 .col-1 .block-3 {
+        padding: 5px 10px;
+      }
+
+      .row-3 .col-1 .block-2 {
+        padding: 10px 10px 10px;
+      }
+
+      .row-4 .col-1 {
+        padding: 10px 10px;
+      }
+
+      .row-4 .col-1 .block-1 {
+        padding-bottom: 5px;
+        padding-top: 5px;
+        text-align: center;
+        width: 100%;
+      }
+
+      .row-5 .row-content {
+        border-radius: 0 0 30px 30px;
+      }
+
+      .row-5 .col-1 {
+        border-radius: 0 0 30px 30px;
+        padding: 25px 15px 25px 45px;
+      }
+
+      .row-6 .col-1,
+      .row-6 .col-1 .block-1 {
+        padding-bottom: 5px;
+        padding-top: 5px;
+      }
+
+      .row-5 .col-1 .block-2 {
+        padding-bottom: 5px;
+        text-align: center;
+        width: 100%;
+      }
+
+      .row-6 .row-content {
+        color: #000;
+      }
+
+      .row-6 .col-1 .block-1 {
+        color: #9d9d9d;
+        font-family: inherit;
+        font-size: 15px;
+        text-align: center;
+      }
+
+      .row-3 .col-1 .block-1,
+      .row-3 .col-1 .block-3 {
+        color: #878787;
+        direction: ltr;
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: 120%;
+        text-align: center;
+      }
+
+      .row-3 .col-1 .block-1 a,
+      .row-3 .col-1 .block-2 a,
+      .row-3 .col-1 .block-3 a {
+        color: #8a3b8f;
+      }
+
+      .row-3 .col-1 .block-1 p:not(:last-child),
+      .row-3 .col-1 .block-2 p:not(:last-child),
+      .row-3 .col-1 .block-3 p:not(:last-child),
+      .row-5 .col-1 .block-1 p:not(:last-child) {
+        margin-bottom: 16px;
+      }
+
+      .row-5 .col-1 .block-1 {
+        color: #989494;
+        font-size: 12px;
+        text-align: left;
+      }
+
+      .row-5 .col-1 .block-1 a,
+      .row-5 .col-1 .block-3 a {
+        color: #0068a5;
+      }
+
+      .row-3 .col-1 .block-2 {
+        color: #878787;
+        font-size: 30px;
+        text-align: center;
+      }
+
+      @media (max-width: 700px) {
+        .row-content:not(.no_stack) {
+          display: block;
+        }
+
+        .row-3 .col-1 .block-1,
+        .row-3 .col-1 .block-2,
+        .row-3 .col-1 .block-3 {
+          padding: 5px 30px !important;
+        }
+
+        .row-1 .col-1 .block-2 {
+          padding: 10px 60px 30px !important;
+        }
+
+        .row-1 .col-1 .block-2 h1 {
+          font-size: 33px !important;
+        }
+
+        .row-5 .col-1 .block-2 h3 {
+          font-size: 20px !important;
+        }
+
+        .row-4 .col-1 .block-1 h3 {
+          font-size: 24px !important;
+        }
+      }
+
+      .row-5 .col-1 .block-3 {
+        color: #b2b2b2;
+        font-size: 12px;
+        text-align: left;
+      }
+
+      .row-5 .col-1 .block-3 p:not(:last-child) {
+        margin-bottom: 1px;
+      }
+
+      .row-6 .col-1 .block-1 .icon-image {
+        padding: 5px 6px 5px 5px;
+      }
+
+      .row-6 .col-1 .block-1 .icon:not(.icon-first) .content {
+        margin-left: 0;
+      }
+
+      .row-6 .col-1 .block-1 .icon::not(.icon-last) .content {
+        margin-right: 0;
+      }
+
+      .page-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 35px;
+      }
+
+      .main-container {
+        background-color: rgb(255, 255, 255);
+        border-color: #878787;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 10px;
+        padding:15px;
+        width:620px;
+      }
+
+      .btn-container {
+        width: 100%;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 15px;
+        width:85%;
+        background-color: rgb(106, 153, 253);
+        color: rgb(255, 255, 255);
+        border-radius:10px;
+        text-decoration: none;
+        text-align: center;
+        font-weight: 800;
+      }
+
+
+    </style>
+  </head>
+
+  <body>
+    <div class="page-container">
+      <div class="main-container">
+        <div class="row row-1">
+          <div class="row-content">
+            <div class="col col-1 col-w12">
+              <div class="block block-1 spacer">
+                <div class="spacer" style="height: 40px"></div>
+              </div>
+              <div class="block block-2 heading">
+                <h1
+                  style="
+                    color: #020b22;
+                    direction: ltr;
+                    font-family: Poppins, Arial, Helvetica, sans-serif;
+                    font-size: 28px;
+                    font-weight: 700;
+                    letter-spacing: normal;
+                    line-height: 150%;
+                    text-align: center;
+                    margin-top: 0;
+                    margin-bottom: 0;
+                  "
+                >
+                  <span class="tinyMce-placeholder"
+                    >Verificación de cambio de correo electrónico</span
+                  >
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-2">
+          <div class="row-content">
+            <div class="col col-1 col-w12">
+              <div class="block block-1 image">
+                <img
+                  alt="Social profile"
+                  class="center fixedwidth fullwidthOnMobile"
+                  src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/7311/brand_awarenes.png"
+                  style="max-width: 408px"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-3">
+          <div class="row-content">
+            <div class="col col-1 col-w12">
+              <div class="block block-1 paragraph">
+                <p>
+                  Hemos recibido una solicitud para realizar un cambio de correo
+                  electrónico en
+                </p>
+              </div>
+              <div class="block block-2 paragraph">
+                <p>UVGram</p>
+              </div>
+              <div class="block block-3 paragraph">
+                <p>
+                   Para confirmar que fuiste tú, para confirmar que fuiste tú,
+                  haz clic en el siguiente botón que te redireccionará a UVGram.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-4">
+          <div class="row-content">
+            <div class="col col-1 col-w12 btn-container">
+              <div class="btn-container">
+                <a class="btn" target="_blank" href="{url}">
+                  Confirmar tu dirección de correo electrónico
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-5">
+          <div class="row-content">
+            <div class="col col-1 col-w12">
+              <div class="block block-1 paragraph">
+                <p>from</p>
+              </div>
+              <div class="block block-2 heading">
+                <h2
+                  style="
+                    color: #040404;
+                    direction: ltr;
+                    font-family: Poppins, Arial, Helvetica, sans-serif;
+                    font-size: 15px;
+                    font-weight: 700;
+                    letter-spacing: 7px;
+                    line-height: 120%;
+                    text-align: left;
+                    margin-top: 0;
+                    margin-bottom: 0;
+                  "
+                >
+                  <strong
+                    ><span class="tinyMce-placeholder">UVGRAM</span></strong
+                  >
+                </h2>
+              </div>
+              <div class="block block-3 paragraph">
+                <p>
+                  UVGram Inc., Facultad de Estadística e Informática, Xalapa
+                  Veracruz.
+                </p>
+                <p>Este mensaje fue enviado a {email}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

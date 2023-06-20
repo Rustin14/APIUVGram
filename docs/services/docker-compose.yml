@@ -1,0 +1,120 @@
+version: '3.8'
+services:
+  db:
+    build:
+      context: ./prod
+      dockerfile: "./dkfs/DockerfileDB"
+    restart: always
+    container_name: "uvgram_db"
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=soydesarrollador
+      - POSTGRES_DB=uvgram_db
+    volumes:
+      - ./prod/database/data:/var/lib/postgresql/data
+      - ./prod/database/dump/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    networks:
+      prod_network:
+        aliases:
+          - db_prod_host
+  redis:
+    build:
+      context: ./prod
+      dockerfile: "./dkfs/DockerfileRES"
+    image: redis:latest
+    container_name: "uvgram_redis"
+    restart: always
+    command: redis-server --requirepass development
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./prod/authentication/data/redis-data:/var/lib/redis
+      - ./prod/authentication/data/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    networks:
+      prod_network:
+        aliases:
+          - redis_prod_host
+  db_test:
+    build:
+      context: ./testing
+      dockerfile: "./dkfs/DockerfileDB"
+    image: postgres
+    restart: always
+    container_name: "test_uvgram_db"
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=soydesarrollador
+      - POSTGRES_DB=test_uvgram_db
+    volumes:
+      - ./testing/database/data/:/var/lib/postgresql/data
+      - ./testing/database/dump/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    networks:
+      test_network:
+        aliases:
+          - db_test_host
+  redis_test:
+    build:
+      context: ./testing
+      dockerfile: "./dkfs/DockerfileRES"
+    image: redis:latest
+    restart: always
+    container_name: "test_uvgram_redis"
+    command: redis-server --requirepass development
+    ports:
+      - "6380:6379"
+    volumes:
+      - ./testing/authentication/data/redis-data:/var/lib/redis
+      - ./testing/authentication/data/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    networks:
+      test_network:
+        aliases:
+          - redis_test_host
+  mailhog_test:
+    build:
+      context: ./testing
+      dockerfile: "./dkfs/DockerfileMAH"
+    container_name: "test_uvgram_mailhog"
+    image: mailhog:latest
+    restart: always
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+    networks:
+      test_network:
+        aliases:
+          - mail_test_host
+  ftpserver:
+    build:
+      context: ./prod
+      dockerfile: "./dkfs/DockerfileFTP"
+    container_name: "uvgram_ftp"
+    restart: always
+    image: fclairamb/ftpserver
+    ports:
+      - '2121-2130:2121-2130'
+    volumes:
+      - ./prod/storage/files:/tmp
+      - ./prod/storage/conf:/app
+volumes:
+  testing: {}
+  prod: {}
+networks:
+  prod_network:
+    name: prod_net
+    driver: bridge
+    ipam: 
+      driver: default
+  test_network:
+    name: test_net
+    driver: bridge
+    ipam:
+      driver: default
